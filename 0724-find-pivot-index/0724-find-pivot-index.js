@@ -3,15 +3,20 @@
  * @return {number}
  */
 var pivotIndex = function(nums) {
+  const sum = nums.reduce((acc, cur) => acc + cur, 0);
+  let leftSum = 0;
+  let rightSum = sum;
+  
   for (let i = 0; i < nums.length; i++) {
-    const left = nums.slice(0, i);
-    const right = nums.slice(i + 1);
-    const leftSum = left.reduce((acc, cur) => acc + cur, 0);
-    const rightSum = right.reduce((acc, cur) => acc + cur, 0);
-    
+    const cur = nums[i];
+
+    rightSum -= cur;
+
     if (leftSum === rightSum) {
       return i;
     }
+    
+    leftSum += cur;
   }
   
   return -1;

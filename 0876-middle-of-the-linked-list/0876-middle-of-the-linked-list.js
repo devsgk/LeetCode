@@ -22,7 +22,6 @@ var middleNode = function(head) {
   }
   
   middleIndex = length % 2 === 0 ? (length / 2) + 1 : parseInt(length / 2) + 1;
-  console.log(middleIndex);
   
   while (count < middleIndex) {
     answer = head;

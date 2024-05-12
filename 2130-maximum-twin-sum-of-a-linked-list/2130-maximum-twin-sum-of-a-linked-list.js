@@ -10,29 +10,30 @@
  * @return {number}
  */
 var pairSum = function(head) {
-  let cur = head;
-  let prev = null;
-  let next;
-  let length = 0;
+  let slow = head;
+  let fast = head;
   
-  while (cur) {
-    next = cur.next;
-    const newNode = new ListNode(cur.val);
-    newNode.next = prev;
-    prev = newNode;
-    cur = next;
-    length++;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
   }
   
-  let count = 0;
+  let prev = null;
+  let next;
+  
+  while (slow) {
+    next = slow.next;
+    slow.next = prev;
+    prev = slow;
+    slow = next;
+  }
+  
   let max = 0;
   
-  while (count < length / 2) {
+  while (prev) {
     max = Math.max(max, head.val + prev.val);
-    console.log(max);
     head = head.next;
     prev = prev.next;
-    count++;
   }
   
   return max;

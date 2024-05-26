@@ -4,22 +4,23 @@
  * @return {boolean}
  */
 var wordPattern = function(pattern, s) {
-  const patternLength = [... new Set(... pattern.split(" "))].length;
-  const sLength = [... new Set(s.split(" "))].length;
-  
-  if (patternLength !== sLength) return false;
-  
-  const obj = {};
-  const arr = s.split(" ");
-  let result = [];
+  const words = s.split(" ");
 
-  for (let i = 0; i < pattern.length; i++) {
-    obj[pattern[i]] = arr[i];
-  }
+  if (pattern.length !== words.length) return false;
+  
+  const letterToWord = new Map();
+  const wordToLetter = new Map();
   
   for (let i = 0; i < pattern.length; i++) {
-    result.push(obj[pattern[i]]);
+    const letter = pattern[i];
+    const word = words[i];
+    
+    if (letterToWord.has(letter) && letterToWord.get(letter) !== word) return false;
+    if (wordToLetter.has(word) && wordToLetter.get(word) !== letter) return false;
+    
+    letterToWord.set(letter, word);
+    wordToLetter.set(word, letter);
   }
   
-  return arr.join(" ") === result.join(" ");
+  return true;
 };

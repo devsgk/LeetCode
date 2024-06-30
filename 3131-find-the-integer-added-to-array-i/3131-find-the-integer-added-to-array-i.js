@@ -4,5 +4,11 @@
  * @return {number}
  */
 var addedInteger = function(nums1, nums2) {
-  return Math.min(...nums2) - Math.min(...nums1);
+  let diff = 0;
+  
+  for (let i = 0; i < nums1.length; i++) {
+    diff += nums2[i] - nums1[i];
+  }
+  
+  return diff / nums1.length;
 };

@@ -4,15 +4,19 @@
  * @return {character}
  */
 var findTheDifference = function(s, t) {
-  const sArr = s.split("");
-  const tArr = t.split("");
+  const obj = {};
   
   for (let i = 0; i < s.length; i++) {
-    const letter = s[i];
-    const index = tArr.indexOf(letter);
-    
-    tArr[index] = "";
+    obj[s[i]] = obj[s[i]] ? obj[s[i]] + 1 : 1;
   }
   
-  return tArr.join("")
+  console.log(obj);
+  
+  for (let i = 0; i < t.length; i++) {
+    if (!obj[t[i]]) {
+      return t[i];
+    } else {
+      obj[t[i]]--;
+    }
+  }
 };

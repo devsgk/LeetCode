@@ -13,7 +13,6 @@ var countPairs = function(nums, k) {
       const right = nums[j];
       
       if (left === right && (i * j) % k === 0) {
-        console.log(left ,right)
         count++;
       }
     }

@@ -3,27 +3,18 @@
  * @return {number[]}
  */
 var findErrorNums = function(nums) {
-  nums.sort((a, b) => a - b);
-  
-  const obj = {};
-  let duplicated;
-  let missing = 1;
+  const n = nums.length;
+  const wrongSum = nums.reduce((acc, cur) => acc + cur, 0);
+  const correctSum = (n * (n + 1)) / 2;
+  const unique = new Set();
   
   for (const num of nums) {
-    obj[num] = obj[num] ? obj[num] + 1 : 1;
-    
-    if (obj[num] === 2) {
-      duplicated = num;
-    }
+    unique.add(num);
   }
   
-  while (missing <= nums.at(-1)) {
-    if (!obj[missing]) {
-      break;
-    }
-    
-    missing++;
-  }
-  
-  return [duplicated, missing];
+  const uniqueSum = [...unique].reduce((acc, cur) => acc + cur, 0);
+  const missing = correctSum - uniqueSum;
+  const duplicate = wrongSum - uniqueSum;
+
+  return [duplicate, missing];
 };

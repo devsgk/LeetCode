@@ -3,21 +3,8 @@
  * @return {boolean}
  */
 var repeatedSubstringPattern = function(s) {
-  let substring = "";
+  const duplicate = s + s;
+  const modified = duplicate.slice(1, -1);
   
-  for (let i = 0; i < s.length; i++) {
-    substring += s[i];
-
-    const newString = s.replaceAll(substring, "");
-
-    if (s === substring) {
-      break;
-    }
-    
-    if (newString === "") {
-      return true;
-    }
-  }
-  
-  return false;
+  return modified.includes(s);  
 };

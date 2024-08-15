@@ -9,9 +9,9 @@ var isValid = function(s) {
   
   const stack = [];
   const obj = {
-    "{": "}",
-    "[": "]",
-    "(": ")",
+    "}": "{",
+    "]": "[",
+    ")": "(",
   };
   
   for (let i = 0; i < s.length; i++) {
@@ -20,10 +20,7 @@ var isValid = function(s) {
     if (cur === "{" || cur === "[" || cur === "(") {
       stack.push(cur);
     } else {
-      const last = stack.at(-1);
-      if (obj[last] === cur) {
-        stack.pop();
-      } else {
+      if (stack.length === 0 || stack.pop() !== obj[cur]) {
         return false;
       }
     }

@@ -3,28 +3,19 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-  if (s.length % 2 !== 0) {
-    return false;
-  }
-  
-  const stack = [];
-  const obj = {
-    "}": "{",
-    "]": "[",
-    ")": "(",
-  };
-  
-  for (let i = 0; i < s.length; i++) {
-    const cur = s[i];
-    
-    if (cur === "{" || cur === "[" || cur === "(") {
-      stack.push(cur);
-    } else {
-      if (stack.length === 0 || stack.pop() !== obj[cur]) {
+  let stack = [];
+  for (let c of s) { 
+    if (c === '(' || c === '{' || c === '[') {
+      stack.push(c); 
+    } else { 
+      if (!stack.length || 
+        (c === ')' && stack[stack.length - 1] !== '(') || 
+        (c === '}' && stack[stack.length - 1] !== '{') ||
+        (c === ']' && stack[stack.length - 1] !== '[')) {
         return false;
       }
+      stack.pop();
     }
   }
-  
-  return stack.length === 0;
-}
+  return !stack.length;
+};

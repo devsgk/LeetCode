@@ -3,13 +3,13 @@
  * @return {character}
  */
 var repeatedCharacter = function(s) {
-  const obj = {};
+  const set = new Set();
   
   for (const letter of s) {
-    if (obj[letter]) {
+    if (set.has(letter)) {
       return letter;
     } else {
-      obj[letter] = 1;
+      set.add(letter);
     }
   }
 };

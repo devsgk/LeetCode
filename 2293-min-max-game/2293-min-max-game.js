@@ -3,26 +3,27 @@
  * @return {number}
  */
 var minMaxGame = function(nums) {
-  let arr = [...nums];
-  
-  while (arr.length !== 1) {
-    const newArr = [];
-    
-    for (let i = 0; i < arr.length / 2; i++) {
-      if (i % 2 === 0) {
-        const min = Math.min(arr[i * 2], arr[i * 2 + 1]);
-        
-        newArr.push(min);
-      } else {
-        console.log(arr[i * 2])
-        const max = Math.max(arr[i * 2], arr[i * 2 + 1]);
-        
-        newArr.push(max);
-      }
-    }
-
-    arr = newArr;
+  if (nums.length === 1) {
+    return nums[0];
   }
   
-  return arr[0];
+  let flag = true;
+  const newArr = [];
+  
+  for (let i = 0; i < nums.length; i = i + 2) {
+    console.log(i);
+    if (flag) {
+      const min = Math.min(nums[i], nums[i + 1]);
+      
+      newArr.push(min);      
+      flag = false;
+    } else {
+      const max = Math.max(nums[i], nums[i + 1]);
+
+      newArr.push(max);
+      flag = true;
+    }
+  }
+
+  return minMaxGame(newArr);
 };

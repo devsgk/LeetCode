@@ -3,16 +3,15 @@
  * @return {boolean}
  */
 var divideArray = function(nums) {
-  const sorted = nums.slice().sort((a, b) => a - b);  
-  let count = 0;
+  const map = new Map();
   
-  while (sorted.length) {
-    const first = sorted.pop();
-    const second = sorted.pop();
-
-    if (first !== second) return false;
-    count++;
+  for (const num of nums) {
+    if (map.has(num)) {
+      map.delete(num);
+    } else {
+      map.set(num, true);
+    }
   }
   
-  return count === (nums.length / 2);
+  return map.size === 0;
 };

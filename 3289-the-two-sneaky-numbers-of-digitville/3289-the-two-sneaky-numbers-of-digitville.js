@@ -3,15 +3,15 @@
  * @return {number[]}
  */
 var getSneakyNumbers = function(nums) {
-  const obj = {};
+  const seen = new Set();
   const result = [];
   
   for (const num of nums) {
-    if (obj[num]) {
+    if (seen.has(num)) {
       result.push(num);
     }
     
-    obj[num] = true;
+    seen.add(num);
   }
   
   return result;

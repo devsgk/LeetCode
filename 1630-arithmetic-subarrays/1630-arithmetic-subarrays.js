@@ -12,14 +12,12 @@ var checkArithmeticSubarrays = function(nums, l, r) {
     const end = r[i];
     
     const sorted = nums.slice(start, end + 1).sort((a, b) => a - b);
-    const diff = sorted[0] - sorted[1];
-    let isTrue = true;
+    const diff = sorted[1] - sorted[0];
     
-    for (let j = 0; j < sorted.length - 1; j++) {
-      if (diff !== (sorted[j] - sorted[j + 1])) {
-        isTrue = false;
-      }
-    }
+    const isTrue = sorted.every((val, index) => {
+      if (index === 0) return true;
+      return sorted[index] - sorted[index - 1] === diff;
+    });
     
     output.push(isTrue);
   }

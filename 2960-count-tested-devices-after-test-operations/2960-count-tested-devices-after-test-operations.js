@@ -3,15 +3,17 @@
  * @return {number}
  */
 var countTestedDevices = function(batteryPercentages) {
-  let n = batteryPercentages.length;
-  let res = 0;
-    
-  for (let i = 0; i < n; i++) {
+  let count = 0;
+  
+  for (let i = 0; i < batteryPercentages.length; i++) {
     if (batteryPercentages[i] > 0) {
-      res++;
-      for (let j = i + 1; j < n; j++) batteryPercentages[j]--;
+      count++;
+      
+      for (let j = i; j < batteryPercentages.length; j++) {
+        batteryPercentages[j]--;
+      }
     }
   }
-
-  return res;
-}
+  
+  return count;
+};

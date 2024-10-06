@@ -3,21 +3,15 @@
  * @return {boolean}
  */
 var digitCount = function(num) {
-  const obj = {};
-  let max = 0;
-  
-  for (const digit of num) {
-    obj[digit] = obj[digit] ? obj[digit] + 1 : 1;
-    max = Math.max(max, digit);
-  }
-  console.log(obj)
-  for (let i = 0; i <= max; i++) {
+  const arr = num.split("");
 
-    if (obj[i] && obj[i] !== +num[i]) {
+  for (let i = 0; i < arr.length; i++) {
+    const count = arr.filter(el => Number(el) === i).length;
+    
+    if (count !== Number(arr[i])) {
       return false;
     }
   }
   
   return true;
 };
-

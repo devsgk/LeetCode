@@ -13,7 +13,6 @@ var restoreArray = function(adjacentPairs) {
     adj.get(b).push(a);
   }
   
-  console.log(adj);
   let start;
   
   for (const [key, value] of adj) {
@@ -29,6 +28,7 @@ var restoreArray = function(adjacentPairs) {
   
   while (queue.length) {
     const node = queue.shift();
+    
     answer.push(node);
     visited.add(node);
     

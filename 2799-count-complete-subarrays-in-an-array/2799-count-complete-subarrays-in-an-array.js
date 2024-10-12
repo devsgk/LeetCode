@@ -3,21 +3,18 @@
  * @return {number}
  */
 var countCompleteSubarrays = function(nums) {
-  const set = new Set(nums);
-  const size = set.size;
+  const size = new Set(nums).size;
   let count = 0;
   
   for (let i = 0; i < nums.length; i++) {
-    const obj = {};
+    const map = new Map();
     let uniqueCount = 0;
     
     for (let j = i; j < nums.length; j++) {
-      const cur = nums[j];
-      
-      if (obj[cur]) {
-        obj[cur] += 1;
+      if (map.has(nums[j])) {
+        map.set(nums[j], map.get(nums[j]) + 1);
       } else {
-        obj[cur] = 1;
+        map.set(nums[j], 1);
         uniqueCount++;
       }
       

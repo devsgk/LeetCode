@@ -9,6 +9,7 @@ var displayTable = function(orders) {
   for (const order of orders) {
     const tableNumber = order[1];
     const food = order[2];
+
     result.add(food);
     
     if (obj[tableNumber]) {

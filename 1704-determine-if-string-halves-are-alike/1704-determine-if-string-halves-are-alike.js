@@ -4,18 +4,16 @@
  */
 var halvesAreAlike = function(s) {
   const vowels = new Set(["a", "e", "i", "o", "u"]);
-  const first = s.slice(0, s.length / 2);
-  const second = s.slice(s.length / 2);
-  let count1 = 0;
-  let count2 = 0;
+  const midIndex = Math.floor(s.length / 2);
+  let count = 0;
   
-  for (let i = 0; i < first.length; i++) {
-    const candidate1 = first[i];
-    const candidate2 = second[i];
+  for (let i = 0; i < midIndex; i++) {
+    const candidate1 = s[i];
+    const candidate2 = s[midIndex + i];
     
-    if (vowels.has(candidate1.toLowerCase())) count1++;
-    if (vowels.has(candidate2.toLowerCase())) count2++;
+    if (vowels.has(candidate1.toLowerCase())) count++;
+    if (vowels.has(candidate2.toLowerCase())) count--;
   }
   
-  return count1 === count2;
+  return count === 0;
 };

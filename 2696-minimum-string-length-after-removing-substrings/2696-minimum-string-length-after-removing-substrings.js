@@ -3,15 +3,17 @@
  * @return {number}
  */
 var minLength = function(s) {
-  let str = s;
-  let count = 0;
-  const length = s.length;
+  const stack = [];
   
-  while (count < length / 2) {
-    str = str.replace("AB", "");
-    str = str.replace("CD", "");
-    count++;
+  for (const letter of s) {
+    if (letter === "B" && stack.at(-1) === "A") {
+      stack.pop();
+    } else if (letter === "D" && stack.at(-1) === "C") {
+      stack.pop();
+    } else {
+      stack.push(letter);
+    }
   }
   
-  return str.length;
+  return stack.length;
 };

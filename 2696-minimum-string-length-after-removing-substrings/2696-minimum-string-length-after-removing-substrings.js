@@ -7,7 +7,7 @@ var minLength = function(s) {
   let count = 0;
   const length = s.length;
   
-  while (count < length) {
+  while (count < length / 2) {
     str = str.replace("AB", "");
     str = str.replace("CD", "");
     count++;

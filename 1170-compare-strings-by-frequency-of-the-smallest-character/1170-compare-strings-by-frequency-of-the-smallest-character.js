@@ -5,27 +5,37 @@
  */
 var numSmallerByFrequency = function(queries, words) {
   function findMinCharFreq (string) {
-    const arr = string.split("").map(el => el.charCodeAt(0));
-    const min = Math.min(...arr);
-    const minFreq = arr.filter(el => el === min).length;
+    let freq = {};
     
-    return minFreq;
-  }
-  
-  const result = [];
-  let count = 0;
-  
-  for (const query of queries) {
-    const minQueryFreq = findMinCharFreq(query);
-
-    for (const word of words) {
-      const minWordFreq = findMinCharFreq(word);
-      
-      if (minQueryFreq < minWordFreq) count++;
+    for (let char of string) {
+      freq[char] ? (freq[char] += 1) : (freq[char] = 1);
     }
     
-    result.push(count);
-    count = 0;
+    return freq[Object.keys(freq).sort()[0]];
+  }
+  
+  queries = queries.map(el => findMinCharFreq(el));
+  words = words.map(el => findMinCharFreq(el));
+
+  words.sort((a, b) => a - b);
+  
+  const result = [];
+  
+  for (let query of queries) {
+    let start = 0;
+    let end = words.length - 1;
+    
+    while (start <= end) {
+      let mid = parseInt((start + end) / 2);
+      
+      if (query < words[mid]) {
+        end = mid - 1;
+      } else {
+        start = mid + 1;
+      }
+    }
+    
+    result.push(words.length - 1 - end);
   }
   
   return result;

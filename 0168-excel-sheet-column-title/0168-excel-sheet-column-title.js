@@ -3,15 +3,16 @@
  * @return {string}
  */
 function convertToTitle(columnNumber) {
-  let result = '';
+  let colNum = columnNumber;
+  let result = "";
   
-  while (columnNumber > 0) {
-    columnNumber--;
+  while (colNum > 0) {
+    colNum--;
     
-    const char = String.fromCharCode((columnNumber % 26) + 'A'.charCodeAt(0));
+    const char = String.fromCharCode(colNum % 26+ "A".charCodeAt(0));
     
     result = char + result;
-    columnNumber = Math.floor(columnNumber / 26);
+    colNum = Math.floor(colNum / 26);
   }
   
   return result;

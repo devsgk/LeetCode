@@ -9,7 +9,6 @@ var partitionLabels = function(s) {
     obj[s[i]] = i;
   }
   
-  
   const result = [];
   let start = 0;
   let end = 0;

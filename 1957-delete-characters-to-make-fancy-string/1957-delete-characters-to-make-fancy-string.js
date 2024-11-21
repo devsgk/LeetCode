@@ -3,15 +3,20 @@
  * @return {string}
  */
 var makeFancyString = function(s) {
-  let result = [];
-  
-  for (let i = 0; i < s.length; i++) {
-    let n = result.length;
+  let result = "";
+  let count = 1;
+
+  for (let i = 1; i < s.length; i++) {
+    if (s[i] === s[i - 1]) {
+      count++;
+    } else {
+      count = 1;
+    }
     
-    if (!(s[i] === result[n - 1] && s[i] === result[n - 2])) {
-      result.push(s[i]);
+    if (count <= 2) {
+      result += s[i];
     }
   }
 
-  return result.join("");
+  return s[0] + result;
 };

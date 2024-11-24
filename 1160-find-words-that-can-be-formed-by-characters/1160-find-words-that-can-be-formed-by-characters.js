@@ -4,37 +4,34 @@
  * @return {number}
  */
 var countCharacters = function(words, chars) {
-    const counts = new Array(26).fill(0);
-
-    // Step 1: Initialize Character Counts Array
-    for (const ch of chars) {
-        counts[ch.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+  function canForm(word, counts) {
+    const newArr = new Array(26).fill(0);
+    
+    for (const letter of word) {
+      const code = letter.charCodeAt(0) - "a".charCodeAt(0);
+      
+      newArr[code]++;
+      
+      if (newArr[code] > counts[code]) {
+        return false;
+      }
     }
 
-    let result = 0;
+    return true;
+  }
+  
+  const counts = new Array(26).fill(0);
+  let result = 0;
+  
+  for (const char of chars) {
+    counts[char.charCodeAt(0) - "a".charCodeAt(0)]++;
+  }
 
-    // Step 3: Check Words
-    for (const word of words) {
-        if (canForm(word, counts)) {
-            // Step 4: Calculate Lengths
-            result += word.length;
-        }
-    }
-
-    return result;
-
-    function canForm(word, counts) {
-        const c = new Array(26).fill(0);
-
-        // Step 2: Update Counts Array
-        for (const ch of word) {
-            const x = ch.charCodeAt(0) - 'a'.charCodeAt(0);
-            c[x]++;
-            if (c[x] > counts[x]) {
-                return false;
-            }
-        }
-
-        return true;
-    }
+  for (const word of words) {
+    if(canForm(word, counts)) {
+      result += word.length;
+    };
+  }
+  
+  return result;
 };

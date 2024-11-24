@@ -4,41 +4,37 @@
  * @return {number}
  */
 var countCharacters = function(words, chars) {
-  const freq = {};
-  const arr = [];
-  
-  for (const char of chars) {
-    freq[char] = freq[char] ? freq[char] + 1 : 1;
-  }
+    const counts = new Array(26).fill(0);
 
-  for (const word of words) {
-    const obj = {};
-    const array = word.split("");
-    
-    for (const item of array) {
-      obj[item] = obj[item] ? obj[item] + 1 : 1;
+    // Step 1: Initialize Character Counts Array
+    for (const ch of chars) {
+        counts[ch.charCodeAt(0) - 'a'.charCodeAt(0)]++;
     }
-    
-    arr.push(obj);
-  }
-  
-  let count = 0;
 
-  for (const obj of arr) {
+    let result = 0;
 
-    let canBeFormed = true;
-    
-    for (const [key, value] of Object.entries(obj)) {
-      if (!freq[key] || (obj[key] > freq[key])) {
-        canBeFormed = false;
-        continue;
-      }
+    // Step 3: Check Words
+    for (const word of words) {
+        if (canForm(word, counts)) {
+            // Step 4: Calculate Lengths
+            result += word.length;
+        }
     }
-    
-    if (canBeFormed) {
-      count += Object.values(obj).reduce((acc, cur) => acc + cur, 0);
+
+    return result;
+
+    function canForm(word, counts) {
+        const c = new Array(26).fill(0);
+
+        // Step 2: Update Counts Array
+        for (const ch of word) {
+            const x = ch.charCodeAt(0) - 'a'.charCodeAt(0);
+            c[x]++;
+            if (c[x] > counts[x]) {
+                return false;
+            }
+        }
+
+        return true;
     }
-  }
-  
-  return count;
 };

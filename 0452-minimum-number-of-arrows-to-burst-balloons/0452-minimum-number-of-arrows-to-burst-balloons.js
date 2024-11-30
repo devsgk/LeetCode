@@ -3,7 +3,7 @@
  * @return {number}
  */
 var findMinArrowShots = function(points) {
-  const sortedPoints = points.sort((a, b) => a[1] - b[1] || a[0] - b[0]);
+  const sortedPoints = points.sort((a, b) => a[1] - b[1]);
   let arrowPosition = sortedPoints[0][1];
   let count = 1;
 

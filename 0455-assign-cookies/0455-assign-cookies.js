@@ -6,21 +6,17 @@
 var findContentChildren = function(g, s) {
   const sortedG = g.sort((a, b) => a - b);
   const sortedS = s.sort((a, b) => a - b);
+  let gIndex = 0;
+  let sIndex = 0;
   let count = 0;
-  let nextGreed = 0;
-  
-  for (let i = 0; i < sortedS.length; i++) {
-    const curSize = sortedS[i];
-    
-    for (let j = nextGreed; j < sortedG.length; j++) {
-      const curGreed = sortedG[j];
-      
-      if (curSize >= curGreed) {
-        count++;
-        nextGreed = j + 1;
-        
-        break;
-      }
+
+  while (gIndex <= sortedG.length && sIndex <= sortedS.length) {
+    if (sortedS[sIndex] >= sortedG[gIndex]) {
+      sIndex++;
+      gIndex++;
+      count++;
+    } else {
+      sIndex++;
     }
   }
   

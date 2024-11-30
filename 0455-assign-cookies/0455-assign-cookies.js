@@ -12,12 +12,11 @@ var findContentChildren = function(g, s) {
 
   while (gIndex < sortedG.length && sIndex < sortedS.length) {
     if (sortedS[sIndex] >= sortedG[gIndex]) {
-      sIndex++;
       gIndex++;
       count++;
-    } else {
-      sIndex++;
     }
+    
+    sIndex++;
   }
   
   return count;

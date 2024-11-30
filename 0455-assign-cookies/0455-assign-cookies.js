@@ -10,7 +10,7 @@ var findContentChildren = function(g, s) {
   let sIndex = 0;
   let count = 0;
 
-  while (gIndex <= sortedG.length && sIndex <= sortedS.length) {
+  while (gIndex < sortedG.length && sIndex < sortedS.length) {
     if (sortedS[sIndex] >= sortedG[gIndex]) {
       sIndex++;
       gIndex++;

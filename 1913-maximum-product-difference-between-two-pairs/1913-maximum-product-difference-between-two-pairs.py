@@ -1,5 +1,3 @@
-from typing import List
-
 class Solution:
     def maxProductDifference(self, nums: List[int]) -> int:
         min1 = min2 = float('inf')

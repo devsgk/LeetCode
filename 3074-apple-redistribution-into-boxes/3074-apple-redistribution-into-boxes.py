@@ -1,15 +1,14 @@
 class Solution:
-    def minimumBoxes(self, a, c):
-        ans = 0
-        s = sum(a)
-        c.sort()
+    def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
+        totalApples = reduce(lambda acc, cur: acc + cur, apple)
+        sortedBoxes = sorted(capacity, reverse = True)
+        count = 0
 
-        i = len(c) - 1
-        while i >= 0:
-            s -= c[i]
-            ans += 1
-            if s <= 0:
-                break
-            i -= 1
+        for box in sortedBoxes:
+            totalApples -= box
+            count += 1
 
-        return ans
+            if totalApples <= 0:
+                break;
+        
+        return count

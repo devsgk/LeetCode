@@ -12,4 +12,3 @@ class Solution:
       freq[cur] = freq.get(cur, 0) + 1
       
     return count
-  

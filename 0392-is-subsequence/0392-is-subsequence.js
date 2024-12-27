@@ -4,18 +4,13 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-  const sArray = s.split("");
-  let tArray = t.split("");
-  
-  for (const letter of sArray) {
-    const index = tArray.indexOf(letter);
-    
-    if (index !== -1) {
-      tArray = tArray.slice(index + 1)
-    } else {
-      return false;
+  let index = 0;
+
+  for (let i = 0; i < t.length; i++) {
+    if (t[i] === s[index]) {
+      index++;
     }
   }
   
-  return true;
+  return index === s.length;
 };

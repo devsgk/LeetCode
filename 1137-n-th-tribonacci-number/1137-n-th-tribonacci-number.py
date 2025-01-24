@@ -1,6 +1,6 @@
 class Solution:
   def tribonacci(self, n: int) -> int:
-    if n <= 1:
+    if n < 1:
       return 0
 
     if n == 1 or n == 2:

@@ -7,17 +7,14 @@ var maxLengthBetweenEqualCharacters = function(s) {
 
   for (let i = 0; i < s.length; i++) {
     const start = s[i];
-    let count = 0;
 
-    for (let j = i + 1; j < s.length; j++) {
+    for (let j = s.length - 1; j > i; j--) {
       const next = s[j];
-      
+
       if (start === next) {
-        max = Math.max(max, count);
+        max = Math.max(max, j - i - 1);
 
         break;
-      } else {
-        count++;
       }
     }
   }

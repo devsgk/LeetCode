@@ -12,6 +12,7 @@ var findDisappearedNumbers = function(nums) {
   }
 
   const result = [];
+
   while (count <= length) {
     if (!freq[count]) result.push(count);
 

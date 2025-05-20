@@ -4,13 +4,5 @@
  * @return {character}
  */
 var nextGreatestLetter = function(letters, target) {
-  const targetCode = target.charCodeAt();
-
-  for (const letter of letters) {
-    const code = letter.charCodeAt();
-
-    if (code > targetCode) return letter;
-  }
-
-  return letters[0];
+  return letters.find(el => el > target || letters[0]);
 };

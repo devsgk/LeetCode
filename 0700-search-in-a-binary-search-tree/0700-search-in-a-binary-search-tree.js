@@ -17,6 +17,6 @@ var searchBST = function(root, val) {
     else if (root.val < val) root = root.right;
     else return root;
   }
-  
+
   return null;
 }

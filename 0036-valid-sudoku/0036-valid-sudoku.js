@@ -11,7 +11,7 @@ var isValidSudoku = function(board) {
     for (let j = 0; j < 9; j++) {
       let row = board[i][j];
       let col = board[j][i];
-      let box = board[3 * Math.floor(i / 3) + Math.floor(j / 3)][3 * (i % 3)+(j % 3)];
+      let box = board[3 * Math.floor(i / 3) + Math.floor(j / 3)][3 * (i % 3) + (j % 3)];
 
       if (row !== ".") {
         if (rowSet.has(row)) return false;

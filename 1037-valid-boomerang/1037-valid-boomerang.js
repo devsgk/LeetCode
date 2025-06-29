@@ -4,7 +4,7 @@
  */
 var isBoomerang = function(points) {
   const [first, second, third] = [...points];
-  console.log(first, second, third)
+  if (first[0] === second[0] && first[0] === third[0]) return false;
   
   const slope1 =  (first[1] - second[1]) / (first[0] - second[0]);
   const slope2 = (first[1] - third[1]) / (first[0] - third[0]);

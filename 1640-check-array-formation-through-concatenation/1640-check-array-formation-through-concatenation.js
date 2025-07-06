@@ -4,34 +4,24 @@
  * @return {boolean}
  */
 var canFormArray = function(arr, pieces) {
-  const obj = {};
+  const map = new Map();
 
-  for (let i = 0; i < arr.length; i++) {
-    const cur = arr[i];
-
-    for (const item of pieces) {
-      const firstNum = item[0];
-
-      if (cur === firstNum) {
-        if (obj[firstNum]) {
-          obj[firstNum].push(...item);
-        } else {
-          obj[firstNum] = [...item];
-        }
-      }
-    }
+  for (const peice of pieces) {
+    map.set(peice[0], peice)
   }
 
-  const result = [];
-
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length;) {
     const cur = arr[i];
-    if (obj[cur]) {
-      const popped = obj[cur]?.join("")
+    const peice = map.get(cur);
 
-      result.push(popped);
+    if (!peice) return false;
+
+    for (let j = 0; j < peice.length; j++) {
+      if (arr[i + j] !== peice[j]) return false;
     }
+
+    i += peice.length;
   }
 
-  return arr.join("") === result.join("") ? true : false;
+  return true;
 };

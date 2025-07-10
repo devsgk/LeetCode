@@ -5,8 +5,6 @@
  */
 var findRestaurant = function(list1, list2) {
   const list1Map = new Map();
-  const list2Map = new Map();
-  const sumMap = new Map();
 
   for (let i = 0; i < list1.length; i++) {
     const cur = list1[i];
@@ -14,34 +12,23 @@ var findRestaurant = function(list1, list2) {
     list1Map.set(cur, i);
   }
 
+  let min = Infinity;
+  const result = [];
+
   for (let i = 0; i < list2.length; i++) {
     const cur = list2[i];
 
-    list2Map.set(cur, i);
-  }
+    if (list1Map.has(cur)) {
+      const sum = i + list1Map.get(cur);
 
-  for (let i = 0; i < list1.length; i++) {
-    const cur = list1[i];
-    const index1 = list1Map.get(cur);
-    const index2 = list2Map.get(cur);
-
-    if (!isNaN(index1) && !isNaN(index2)) {
-      const sum = index1 + index2;
-
-      sumMap.set(cur, sum);
+      if (sum < min) {
+        result.length = 0;
+        result.push(cur);
+        min = sum;
+      } else if (sum === min) {
+        result.push(cur);
+      }
     }
-  }
-
-  let min = Infinity;
-
-  for (const [key, value] of sumMap) {
-    min = Math.min(min, value);
-  }
-
-  const result = [];
-
-  for (const [key, value] of sumMap) {
-    if (value === min) result.push(key);
   }
 
   return result;

@@ -3,8 +3,6 @@
  * @return {number}
  */
 var countBeautifulPairs = function(nums) {
-  let count = 0;
-
   function gcd(a, b) {
     if (!b) {
       return a;
@@ -13,15 +11,25 @@ var countBeautifulPairs = function(nums) {
     return gcd(b, a % b);
   }
    
-  for (let i = 0; i < nums.length; i++) {
-    const firstDigit = Number(String(nums[i])[0]);
+  function getFirstDigit(num) {
+    while (num >= 10) num = Math.floor(num / 10);
 
-    for (let j = i + 1; j < nums.length; j++) {
-      const lastDigit = Number(String(nums[j]).at(-1));
-      const gcdInt  = gcd(firstDigit, lastDigit);
+    return num;
+  }
 
-      if (gcdInt === 1) count++;
+  const firstDigitFreq = new Map();
+  let count = 0;
+
+  for (const num of nums) {
+    const lastDigit = num % 10;
+
+    for (const [digit, freq] of firstDigitFreq) {
+      if (gcd(digit, lastDigit) === 1) count += freq;
     }
+
+    const head = getFirstDigit(num);
+
+    firstDigitFreq.set(head, (firstDigitFreq.get(head) || 0) + 1);
   }
 
   return count;

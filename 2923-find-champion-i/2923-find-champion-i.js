@@ -4,17 +4,17 @@
  */
 var findChampion = function(grid) {
   let numOfTeams = grid.length;
-  let firstTeamIndex = 0;
-  let secondTeamIndex = 1;
-  let count = 0;
+  let championIndex = 0;
+  let loserIndex = 1;
 
-  while (firstTeamIndex < numOfTeams && secondTeamIndex < numOfTeams) {
-    if (grid[firstTeamIndex][secondTeamIndex] === 1) secondTeamIndex++;
-    else {
-      firstTeamIndex = secondTeamIndex;
-      secondTeamIndex++;
+  while (championIndex < numOfTeams && loserIndex < numOfTeams) {
+    if (grid[championIndex][loserIndex] === 1) {
+      loserIndex++;
+    } else {
+      championIndex = loserIndex;
+      loserIndex++;
     }
   }
 
-  return firstTeamIndex;
+  return championIndex;
 };

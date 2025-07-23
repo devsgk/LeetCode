@@ -3,23 +3,13 @@
  * @return {number[]}
  */
 var constructTransformedArray = function(nums) {
-  const result = Array.from({length: nums.length}).fill(0);
-  const length = nums.length;
+  const result = []
+  let length = nums.length;
 
   for (let i = 0; i < nums.length; i++) {
-    const cur = nums[i];
+    let index = (i + nums[i] % length + length) % length;
 
-    if (cur > 0) {
-      const index = (i + cur) % length;
-
-      result[i] = nums.at(index);
-    } else if (cur < 0) {
-      const index = (i - Math.abs(cur)) % length;
-      
-      result[i] = nums.at(index);
-    } else {
-      result[i] = cur;
-    }
+    result.push(nums[index]);
   }
 
   return result;

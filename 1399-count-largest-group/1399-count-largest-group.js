@@ -4,26 +4,23 @@
  */
 var countLargestGroup = function(n) {
   let count = 1;
-  let freq = {};
-  let max = -Infinity;
-  let result = 0;
+  let map = new Map();
+  let maxSize = 0;
 
   while (count <= n) {
-    const str = String(count);
-    const arr = str.split("");
-    const sum = arr.map(el => Number(el)).reduce((acc, cur) => acc + cur, 0);
-  
-    freq[sum] = freq[sum] ? freq[sum] + 1 : 1;
+    const sum = count.toString().split("").reduce((acc, cur) => acc + Number(cur), 0);
+    const newCount = (map.get(sum) || 0) + 1;
+
+    map.set(sum, newCount);
+    maxSize = Math.max(maxSize, newCount)
 
     count++;
   }
 
-  for (const [key, value] of Object.entries(freq)) {
-    max = Math.max(value, max);
-  }
+  let result = 0;
 
-  for (const [key, value] of Object.entries(freq)) {
-    if (value === max) result++;
+  for (let count of map.values()) {
+    if (count === maxSize) result++;
   }
 
   return result;

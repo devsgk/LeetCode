@@ -5,12 +5,13 @@
 var minCostClimbingStairs = function(cost) {
   let first = cost[0];
   let second = cost[1];
-  
+
   for (let i = 2; i < cost.length; i++) {
-    const cur = cost[i] + Math.min(first, second);
+    const total = Math.min(first, second) + cost[i];
+
     first = second;
-    second = cur;
+    second = total;
   }
-  
+
   return Math.min(first, second);
 };

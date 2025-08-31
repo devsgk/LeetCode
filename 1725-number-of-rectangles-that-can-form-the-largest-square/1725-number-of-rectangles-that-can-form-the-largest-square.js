@@ -9,13 +9,10 @@ var countGoodRectangles = function(rectangles) {
   for (const arr of rectangles) {
     const min = Math.min(...arr);
 
-    maxWidth = Math.max(min, maxWidth);
-  }
-
-  for (const arr of rectangles) {
-    const min = Math.min(...arr);
-
-    if (min === maxWidth) count++;
+    if (min > maxWidth) {
+      maxWidth = min;
+      count = 1;
+    } else if (min === maxWidth) count++;
   }
 
   return count;

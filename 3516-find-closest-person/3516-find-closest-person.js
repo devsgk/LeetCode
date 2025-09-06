@@ -4,7 +4,7 @@
  * @param {number} z
  * @return {number}
  */
-var findClosest = function(x, y, z) {
+var findClosest = function (x, y, z) {
   const return1 = Math.abs(x - z);
   const return2 = Math.abs(y - z);
 

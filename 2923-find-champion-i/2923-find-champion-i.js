@@ -3,18 +3,15 @@
  * @return {number}
  */
 var findChampion = function(grid) {
-  let numOfTeams = grid.length;
-  let championIndex = 0;
-  let loserIndex = 1;
+  let winnerIndex = 0;
+  const numOfTeams = grid.length;
 
-  while (championIndex < numOfTeams && loserIndex < numOfTeams) {
-    if (grid[championIndex][loserIndex] === 1) {
-      loserIndex++;
-    } else {
-      championIndex = loserIndex;
-      loserIndex++;
+  for (let loserIndex = 0; loserIndex < numOfTeams; loserIndex++) {
+    if (winnerIndex === loserIndex) continue;
+    if (grid[winnerIndex][loserIndex] === 0) {
+      winnerIndex = loserIndex;
     }
   }
 
-  return championIndex;
+  return winnerIndex;
 };

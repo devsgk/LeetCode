@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/find-the-key-of-the-numbers/">3270. Find the Key of the Numbers</a></h2><h3>Easy</h3><hr><div><p>You are given three <strong>positive</strong> integers <code>num1</code>, <code>num2</code>, and <code>num3</code>.</p>
+<h2><a href="https://leetcode.com/problems/find-the-key-of-the-numbers/">3270. Find the Key of the Numbers</a></h2><h3>Easy</h3><hr><p>You are given three <strong>positive</strong> integers <code>num1</code>, <code>num2</code>, and <code>num3</code>.</p>
 
 <p>The <code>key</code> of <code>num1</code>, <code>num2</code>, and <code>num3</code> is defined as a four-digit number such that:</p>
 
@@ -19,7 +19,7 @@
 
 <p><strong>Explanation:</strong></p>
 
-<p>On padding, <code>num1</code> becomes <code>"0001"</code>, <code>num2</code> becomes <code>"0010"</code>, and <code>num3</code> remains <code>"1000"</code>.</p>
+<p>On padding, <code>num1</code> becomes <code>&quot;0001&quot;</code>, <code>num2</code> becomes <code>&quot;0010&quot;</code>, and <code>num3</code> remains <code>&quot;1000&quot;</code>.</p>
 
 <ul>
 	<li>The <code>1<sup>st</sup></code> digit of the <code>key</code> is <code>min(0, 0, 1)</code>.</li>
@@ -28,7 +28,7 @@
 	<li>The <code>4<sup>th</sup></code> digit of the <code>key</code> is <code>min(1, 0, 0)</code>.</li>
 </ul>
 
-<p>Hence, the <code>key</code> is <code>"0000"</code>, i.e. 0.</p>
+<p>Hence, the <code>key</code> is <code>&quot;0000&quot;</code>, i.e. 0.</p>
 </div>
 
 <p><strong class="example">Example 2:</strong></p>
@@ -53,4 +53,3 @@
 <ul>
 	<li><code>1 &lt;= num1, num2, num3 &lt;= 9999</code></li>
 </ul>
-</div>

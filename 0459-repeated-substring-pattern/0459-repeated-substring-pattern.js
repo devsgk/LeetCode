@@ -3,22 +3,16 @@
  * @return {boolean}
  */
 var repeatedSubstringPattern = function(s) {
-  let subString = "";
+  if (s.length === 1) return false;
 
-  for (let i = 0; i < s.length; i++) {
-    subString += s[i];
+  let sub = "";
 
-    let count = 2;
-    let newSubstring = subString;
+  for (let i = 0; i < s.length / 2; i++) {
+    sub += s[i];
 
+    const arr = s.split(sub);
 
-    while (newSubstring.length <= s.length) {
-      newSubstring = subString.repeat(count);
-
-      if (newSubstring === s) return true;
-
-      count++;
-    }
+    if (arr.every(el => el === "")) return true;
   }
 
   return false;

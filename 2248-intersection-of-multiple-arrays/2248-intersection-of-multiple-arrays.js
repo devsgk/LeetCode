@@ -3,20 +3,21 @@
  * @return {number[]}
  */
 var intersection = function(nums) {
-  const obj = {};
-  const result = [];
-  
+  const freq = {};
+
   for (const arr of nums) {
     for (const num of arr) {
-      obj[num] = obj[num] ? obj[num] + 1 : 1;
+      freq[num] = freq[num] ? freq[num] + 1 : 1;
     }
   }
-  
-  for (const [key, value] of Object.entries(obj)) {
+
+  const result = [];
+
+  for (const [key, value] of Object.entries(freq)) {
     if (value === nums.length) {
       result.push(Number(key));
     }
   }
-  
+
   return result.sort((a, b) => a - b);
 };

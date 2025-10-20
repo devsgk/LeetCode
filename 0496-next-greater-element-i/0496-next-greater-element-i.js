@@ -11,9 +11,9 @@ var nextGreaterElement = function(nums1, nums2) {
     const index = nums2.indexOf(num);
     const subArr = nums2.slice(index + 1);
 
-    if (subArr.some(el => el> num)) {
-      subArr.filter(el => el > num);
-      result[i] = subArr[0];
+    if (subArr.some(el => el > num)) {
+      const filtered = subArr.filter(el => el > num);
+      result[i] = filtered[0];
     } else {
       result[i] = -1;
     }

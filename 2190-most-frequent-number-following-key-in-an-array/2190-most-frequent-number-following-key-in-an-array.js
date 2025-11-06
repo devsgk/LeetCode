@@ -4,29 +4,25 @@
  * @return {number}
  */
 var mostFrequent = function(nums, key) {
-  const freq = new Map();
+  const freq = {};
 
   for (let i = 0; i < nums.length - 1; i++) {
     const cur = nums[i];
     const next = nums[i + 1];
 
     if (cur === key) {
-      if (freq.get(next)) {
-        freq.set(next, freq.get(next) + 1);
-      } else {
-        freq.set(next, 1);
-      }
+      freq[next] = freq[next] ? freq[next] + 1 : 1;
     }
   }
 
   let max = 0;
-  let result;
+  let answer;
 
-  for (const [key, value] of freq) {
+  for (const [key, value] of Object.entries(freq)) {
     max = Math.max(max, value);
 
-    if (value === max) result = key;
+    if (value === max) answer = Number(key);
   }
 
-  return result;
-};
+  return answer;
+}
